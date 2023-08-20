@@ -33,17 +33,112 @@
 
 # 3. k번째 큰 수
 
-N, K = map(int, input().split())
-card = list(map(int, input().split()))
-sum = set()
+# N, K = map(int, input().split())
+# card = list(map(int, input().split()))
+# sum = set()
+#
+# for i in range(0, N-2):
+#     for j in range(i+1, N-1):
+#         for k in range(j+1, N):
+#             sum.add(card[i] + card[j] + card[k])
+#
+# sum = list(sum)
+# sum.sort(reverse=True)
+# print(sum[K-1])
 
-for i in range(0, N-2):
-    for j in range(i+1, N-1):
-        for k in range(j+1, N):
-            sum.add(card[i] + card[j] + card[k])
+# 4. 대표값
 
-sum = list(sum)
-sum.sort(reverse=True)
-print(sum[K-1])
+# import sys
+#
+# N = int(input())
+# array = list(map(int, sys.stdin.readline().split()))
+#
+# # round는 round_half_even 방식을 택한다. -> 5.5 : 6 , 4.5 : 4
+# ave = sum(array) / N
+# ave = int(ave+0.5)  # 강제 내림!
+#
+# print(ave)
+# min = 100
+# index = 0
+#
+# for i, j in enumerate(array):
+#     if abs(ave - j) < min:
+#         sub = ave - j
+#         index = i
+#     elif abs(ave - j) == min:
+#         if array[index] < array[i]:
+#             index = i
+# print(array[index], index+1)
+
+
+# 5. 정다면체
+
+'''
+    4 : 1 ~ 4                 4 :  1 ~ 4
+    6 : 1 ~ 6                20 :  1 ~ 20
+    
+    합 : 2 ~ 7     2 ~ 5           2 ~ 21
+    합 : 3 ~ 8     3 ~ 6           3 ~ 22
+    합 : 4 ~ 9     4 ~ 7
+    합 : 5 ~ 10    5 ~ 8
+    -----------   --------
+        5 ~ 7    
+        첫번째 주사위의 가장 큰 숫자 + 두번째 주사위의 가장 작은 숫자 
+                            ~~~~~~~~
+        첫번째 주사위의 가장 작은 숫자 + 두번째 주사위의 가장 큰 숫자
+        
+'''
+# N, M = map(int ,input().split())
+#
+# if N < M:
+#     for i in range(N + 1, (1+M)+1):
+#         print(i, end=" ")
+# elif N > M:
+#     for i in range(M + 1, (1 + N) + 1):
+#         print(i, end=" ")
+# else:
+#     print(N + 1)
+
+
+# 6. 자릿수의 합
+
+## 방법 1.
+
+N = int(input())
+num = list(input().split())
+
+# def digit_sum(x):
+#     plus = 0
+#     for i in x:
+#         plus += int(i)
+#     return plus
+#
+# max = 0
+# index = 0
+# for i in range(N):
+#     plus = digit_sum(num[i])
+#     if max < plus:
+#         max = plus
+#         index = i
+# print(num[index])
+
+
+## 방법 2.
+def digit_sum(x):
+    sum = 0
+    while x > 0:
+        sum += x % 10
+        x //= 10
+    return sum
+
+max = 0
+for i in num:
+    total = digit_sum(i)
+    if total > max:
+        max = total
+        res = i
+
+print(res)
+
 
 
