@@ -192,31 +192,173 @@ import sys
            격자판[0][n-1] ~ 격자판[n-1][0]    :대각선
 '''
 
+# N = int(input())
+# board = [list(map(int, input().split())) for _ in range(N)]
+# largest = 0
+#
+#
+# def find_max(largest, sum1, sum2):
+#     if largest < sum1:
+#         largest = sum1
+#     if largest < sum2:
+#         largest = sum2
+#     return largest
+#
+#
+# for i in range(N):
+#     sum1= sum2 = 0
+#     for j in range(N):
+#         sum1 += board[i][j]
+#         sum2 += board[j][i]
+#     largest = find_max(largest, sum1, sum2)
+#
+# sum1 = sum2 = 0
+#
+# for i in range(N):
+#     sum1 += board[i][i]
+#     sum2 += board[i][N-i-1]
+# largest = find_max(largest, sum1, sum2)
+#
+# print(largest)
+
+# 7. 사과나무
+'''
+5
+10 13 10 12 15
+12 39 30 23 11
+11 25 50 53 15
+19 27 29 37 27
+19 13 30 13 19  
+'''
+
+# N = int(input())
+# apple = [list(map(int, input().split())) for _ in range(N)]
+# sum = 0
+# s = e = N // 2
+# for i in range(N):
+#     for j in range(s, e + 1):
+#         sum += apple[i][j]
+#     if i < N//2:
+#         s -= 1
+#         e += 1
+#     else:
+#         s += 1
+#         e -= 1
+#
+# print(sum)
+
+
+# 8. 곳감(모래시계)
+
+'''
+5
+10 13 10 12 15
+12 39 30 23 11
+11 25 50 53 15
+19 27 29 37 27
+19 13 30 13 19  
+3
+2 0 3
+5 1 2
+3 1 4
+'''
+
+### 방법 1.
+
+# N = int(input())
+# array = [list(map(int, input().split())) for _ in range(N)]
+#
+# M = int(input())
+# for i in range(M):
+#     command = list(map(int, input().split()))
+#     newArray = [0 for _ in range(N)]
+#
+#     if command[1] == 0:
+#         for j in range(N):
+#             newArray[(j + (5 - command[2])) % 5] = array[command[0]-1][j]
+#     else:
+#         for j in range(N):
+#             newArray[(j + command[2]) % 5] = array[command[0]-1][j]
+#
+#     array[command[0]-1] = newArray[0:5]
+# print(array)
+#
+# s = 0
+# e = N
+# sum = 0
+# for i in range(N):
+#     for j in range(s, e):
+#         sum += array[i][j]
+#     if i < N // 2:
+#         s += 1
+#         e -= 1
+#     else:
+#         s -= 1
+#         e += 1
+#
+# print(sum)
+
+
+### 방법 2.
+
+# N = int(input())
+# array = [list(map(int, input().split())) for _ in range(N)]
+# M = int(input())
+#
+# for i in range(M):
+#     h, t, k = map(int, input().split())
+#     if t == 0:
+#         for _ in range(k):
+#             array[h - 1].append(array[h - 1].pop(0))
+#     else:
+#         for _ in range(k):
+#             array[h - 1].insert(0, array[h - 1].pop())
+#
+# s = 0
+# e = N
+# sum = 0
+# for i in range(N):
+#     for j in range(s, e):
+#         sum += array[i][j]
+#     if i < N // 2:
+#         s += 1
+#         e -= 1
+#     else:
+#         s -= 1
+#         e += 1
+#
+# print(sum)
+
+# 9. 봉우리
+
+'''
+5
+5 3 7 2 3
+3 7 1 6 1
+7 2 5 3 4
+4 3 6 4 1
+8 7 3 5 2
+
+[a][b] -> [a][b+1]
+       -> [a][b-1]
+       -> [a-1][b]
+       -> [a+1][b]
+
+'''
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
 N = int(input())
-board = [list(map(int, input().split())) for _ in range(N)]
-largest = 0
+array = [list(map(int, input().split())) for _ in range(N)]
+array.insert(0, [0]*N)
+array.append([0]*N)
+for x in array:
+    x.insert(0, 0)
+    x.append(0)
 
-
-def find_max(largest, sum1, sum2):
-    if largest < sum1:
-        largest = sum1
-    if largest < sum2:
-        largest = sum2
-    return largest
-
-
-for i in range(N):
-    sum1= sum2 = 0
-    for j in range(N):
-        sum1 += board[i][j]
-        sum2 += board[j][i]
-    largest = find_max(largest, sum1, sum2)
-
-sum1 = sum2 = 0
-
-for i in range(N):
-    sum1 += board[i][i]
-    sum2 += board[i][N-i-1]
-largest = find_max(largest, sum1, sum2)
-
-print(largest)
+cnt = 0
+for i in range(1, N+1):
+    for j in range(1, N+1):
+        if all(array[i][j] > array[i+dx[k]][j+dy[k]] for k in range(4)):
+            cnt += 1
