@@ -346,19 +346,124 @@ import sys
 
 '''
 
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
+# dx = [-1, 0, 1, 0]
+# dy = [0, 1, 0, -1]
+#
+# N = int(input())
+# array = [list(map(int, input().split())) for _ in range(N)]
+# array.insert(0, [0]*N)
+# array.append([0]*N)
+# for x in array:
+#     x.insert(0, 0)
+#     x.append(0)
+#
+# cnt = 0
+# for i in range(1, N+1):
+#     for j in range(1, N+1):
+#         if all(array[i][j] > array[i+dx[k]][j+dy[k]] for k in range(4)):
+#             cnt += 1
 
-N = int(input())
-array = [list(map(int, input().split())) for _ in range(N)]
-array.insert(0, [0]*N)
-array.append([0]*N)
-for x in array:
-    x.insert(0, 0)
-    x.append(0)
 
+# 10. 스도쿠 검사
+
+
+'''
+1 4 3 6 2 8 5 7 9 
+5 7 2 1 3 9 4 6 8 
+9 8 6 7 5 4 2 3 1  
+3 9 1 5 4 2 7 8 6 
+4 6 8 9 1 7 3 5 2 
+7 2 5 8 6 3 9 1 4 
+2 3 7 4 8 1 6 9 5 
+6 1 9 2 7 5 8 4 3 
+8 5 4 3 9 6 1 2 7
+
+'''
+
+# sudoku = [list(map(int, input().split())) for _ in range(9)]
+#
+# def check(a):
+#     for i in range(9):
+#         check_row = [0] * 10
+#         check_column = [0] * 10
+#
+#         for j in range(9):
+#             check_row[sudoku[i][j]] = 1
+#             check_column[sudoku[j][i]] = 1
+#         if sum(check_row) != 9 or sum(check_column) != 9:
+#             return False
+#     for i in range(3):
+#         for j in range(3):
+#             check_square = [0] * 10
+#             for k in range(3):
+#                 for s in range(3):
+#                     check_square[sudoku[i*3+k][j*3+s]] = 1
+#                 if sum(check_square) != 9:
+#                     return False
+#     return True
+#
+#
+# if check(sudoku):
+#     print("YES")
+# else:
+#     print("NO")
+
+
+# 11. 격자판 회문수
+
+'''
+2 4 1 5 3 2 6 
+3 5 1 8 7 1 7 
+8 3 2 7 1 3 8 
+6 1 2 3 2 1 1 
+1 3 1 3 5 3 2 
+1 1 2 5 6 5 2 
+1 2 2 2 2 1 5
+'''
+
+# array = [list(map(int, input().split())) for _ in range(7)]
+# sum = 0
+#
+# for i in range(7):
+#     s = 0
+#     e = 4
+#     for j in range(3):
+#         for k in range(2): # 0, 1
+#             if array[i][s+k] != array[i][e-k]:
+#                 break
+#         else:
+#             sum += 1
+#         s += 1
+#         e += 1
+#
+#     s = 0
+#     e = 4
+#     for j in range(3):
+#         for k in range(2):  # 0, 1
+#             if array[s+k][i] != array[e-k][i]:
+#                 break
+#         else:
+#             sum += 1
+#         s += 1
+#         e += 1
+#
+#
+# print(sum)
+
+
+## 방법 2
+
+board = [list(map(int, input().split())) for _ in range(7)]
 cnt = 0
-for i in range(1, N+1):
-    for j in range(1, N+1):
-        if all(array[i][j] > array[i+dx[k]][j+dy[k]] for k in range(4)):
+for i in range(3):
+    for j in range(7):
+        tmp = board[j][i:i+5]
+        if tmp == tmp[::-1]:
             cnt += 1
+        for k in range(2):
+            if board[i+k][j] != board[i+4-k][j]:
+                break
+        else:
+            cnt += 1
+
+print(cnt)
