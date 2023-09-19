@@ -79,29 +79,29 @@
 - 어떤 값을 기준으로 이진탐색을 할 것인가... -> 최소용량이겠지?
 '''
 
-N, M = map(int, input().split())
-Music = list(map(int, input().split()))
-
-def Count(capacity):
-    cnt = 1
-    sum = 0
-    for x in Music:
-        if sum + x > capacity:
-            cnt += 1
-            sum = x
-        else:
-            sum += x
-    return cnt
-
-start = 1
-end = sum(Music)
-res = 0
-
-while start <= end:
-    mid = (start + end) // 2
-    if Count(mid) <= M:
-        res = mid
-        end = mid - 1
-    else:
-        start = mid + 1
-print(res)
+# N, M = map(int, input().split())
+# Music = list(map(int, input().split()))
+#
+# def Count(capacity):
+#     cnt = 1
+#     sum = 0
+#     for x in Music:
+#         if sum + x > capacity:
+#             cnt += 1
+#             sum = x
+#         else:
+#             sum += x
+#     return cnt
+#
+# start = 1
+# end = sum(Music)
+# res = 0
+#
+# while start <= end:
+#     mid = (start + end) // 2
+#     if Count(mid) <= M:
+#         res = mid
+#         end = mid - 1
+#     else:
+#         start = mid + 1
+# print(res)
