@@ -24,3 +24,10 @@ if temp == False:
 else:
     for i in op:
         print(i)
+
+
+
+
+
+
+
