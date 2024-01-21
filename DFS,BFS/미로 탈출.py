@@ -16,7 +16,7 @@ def bfs(x, y):
                 continue
             if graph[nx][ny] == 1:
                 graph[nx][ny] = graph[x][y] + 1
-                queue.append((nx,ny))
+                queue.append((nx, ny))
     return graph[n-1][m-1]
 
 
@@ -30,3 +30,7 @@ dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
 print(bfs(0,0))
+for i in graph:
+    print(i)
+
+

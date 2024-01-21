@@ -1,4 +1,5 @@
 # 연결 요소 찾기
+# 연결되어있는 부분들을 모두 탐색해야 한다.
 
 def dfs(x, y):
     if x <= -1 or x >= n or y <= -1 or y >= m:
@@ -25,3 +26,6 @@ for i in range(n):
         if dfs(i, j):
             result += 1
 print(result)
+
+
+
