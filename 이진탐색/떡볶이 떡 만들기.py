@@ -35,7 +35,7 @@
 # print(x)
 
 
-# 또 다른 풀이
+# # 또 다른 풀이
 n, m = list(map(int, input().split(' ')))
 array = list(map(int, input().split()))
 
@@ -57,5 +57,44 @@ while(start <= end):
         start = mid + 1
 
 print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
